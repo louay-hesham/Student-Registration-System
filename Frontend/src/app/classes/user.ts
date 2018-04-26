@@ -1,3 +1,5 @@
+import * as crypto from 'crypto-js';
+
 export class User {
 
   public username: string;
@@ -7,9 +9,10 @@ export class User {
   constructor () { }
   
   public toJSON(): any {
+    let hashedPwd = crypto.MD5(this.password)
     return {
       'username': this.username,
-      'password': this.password,
+      'password': hashedPwd,
       'email': this.email
     }
   }
