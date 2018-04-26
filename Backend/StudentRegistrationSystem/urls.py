@@ -16,11 +16,11 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from rest_framework import routers
-from StudentRegistrationSystem.test_view import hello
 from django.views.decorators.csrf import csrf_exempt
+from StudentRegistrationSystem.APIs import *
 
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^test/', csrf_exempt(hello)),
+    url(r'^register/', csrf_exempt(register_user)),
 ]
