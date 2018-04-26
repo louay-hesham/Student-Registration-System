@@ -22,7 +22,16 @@ export class RegistrationComponent implements OnInit {
   ngOnInit() { }
 
   private register() {
-    if (!this.validateEmail()) {
+    if (this.user.username == undefined || this.user.username == '' ||
+        this.user.email == undefined || this.user.email == '' ||
+        this.user.password == undefined || this.user.password == '' ||
+        this.repeatedPassword == undefined || this.repeatedPassword == '') {
+      swal({
+        title: "Can not register",
+        text: "Fill the empty fields",
+        icon: "error",
+      });
+    } else if (!this.validateEmail()) {
       swal({
         title: "Can not register",
         text: "Please enter a valid email",
@@ -37,7 +46,18 @@ export class RegistrationComponent implements OnInit {
     } else {
       this.api.registerUser(this.user.toJSON()).subscribe (
         response => {
-          console.log(response);
+          if (response['status'] == 'success') {
+            swal({
+              title: "Registration successful",
+              icon: "success",
+            });
+          } else {
+            swal({
+              title: "Can not register",
+              text: response['error_message'],
+              icon: "error",
+            });    
+          }
         },
         error => {
           console.log(error);
