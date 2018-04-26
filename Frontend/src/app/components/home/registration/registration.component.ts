@@ -11,7 +11,7 @@ import { EmailValidator } from '@angular/forms';
 export class RegistrationComponent implements OnInit {
 
   private user: User = new User();
-  private repeatedPassowrd: string;
+  private repeatedPassword: string;
   private emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 
@@ -19,12 +19,16 @@ export class RegistrationComponent implements OnInit {
 
   ngOnInit() { }
 
-  register() {
+  private register() {
     console.log(this.user.toJSON())
   }
 
-  validateEmail(): boolean {
+  private validateEmail(): boolean {
     return this.emailRegex.test(this.user.email) || this.user.email == undefined;
+  }
+
+  private checkPassword(): boolean {
+    return this.user.password == this.repeatedPassword;
   }
 
 }

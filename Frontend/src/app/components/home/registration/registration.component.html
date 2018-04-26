@@ -37,7 +37,7 @@
   <div class="form-group">
     <label for="password2">Repeat password</label>
     <input type="password" class="form-control" name="password2" required [(ngModel)]="repeatedPassword" #pwd2="ngModel">
-    <div [hidden]="(pwd2.valid || pwd2.pristine) && pwd2 == pwd"
+    <div [hidden]="checkPassword()"
          class="alert alert-danger">
       Passwords do not match
     </div>
