@@ -46,3 +46,8 @@ Frontend/Thumbs.db
 Backend/StudentRegistrationSystem/__pycache__/
 Backend/backend/__pycache__/
 Backend/backend/migrations/__pycache__/
+
+Backend/bin
+Backend/include
+Backend/lib
+Backend/local
