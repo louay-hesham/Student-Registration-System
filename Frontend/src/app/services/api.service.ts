@@ -14,4 +14,12 @@ export class ApiService {
   public registerUser(user: User): Observable<any> {
     return this.http.post(this.baseUrl + 'register/', user)
   }
+
+  public login(username: string, password: string): Observable<any> {
+    let data = {
+      'username': username,
+      'password': password
+    }
+    return this.http.post(this.baseUrl + 'login/', data)  
+  }
 }
