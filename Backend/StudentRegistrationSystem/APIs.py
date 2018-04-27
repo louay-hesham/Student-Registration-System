@@ -24,3 +24,14 @@ def register_user(request):
       user.save()
       response = success_response
   return HttpResponse(json.dumps(response))
+
+def login(request):
+  data = extract_data(request)
+  username = data['username']
+  hashed_password = decode_password(data['password']['words'])
+  try:
+    user = User.objects.get(username = username, password = hashed_password)
+    response = success_response
+  except:
+    response = make_error_response('Incorrect username or password')
+  return HttpResponse(json.dumps(response))
