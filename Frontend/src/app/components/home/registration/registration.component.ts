@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../../services/api.service';
 import { User } from '../../../classes/user'
+import { CommonService } from '../../../services/common.service';
 import { EmailValidator } from '@angular/forms';
-import * as _swal from 'sweetalert';
-import { SweetAlert } from 'sweetalert/typings/core';
-const swal: SweetAlert = _swal as any;
 
 @Component({
   selector: 'app-registration',
@@ -17,7 +15,7 @@ export class RegistrationComponent implements OnInit {
   private repeatedPassword: string;
   private emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-  constructor(private api: ApiService) { }
+  constructor(private api: ApiService, private common: CommonService) { }
 
   ngOnInit() { }
 
@@ -26,37 +24,18 @@ export class RegistrationComponent implements OnInit {
         this.user.email == undefined || this.user.email == '' ||
         this.user.password == undefined || this.user.password == '' ||
         this.repeatedPassword == undefined || this.repeatedPassword == '') {
-      swal({
-        title: "Can not register",
-        text: "Fill the empty fields",
-        icon: "error",
-      });
+      this.common.makeErrorMessage('Can not register', 'Fill the empty fields');
     } else if (!this.validateEmail()) {
-      swal({
-        title: "Can not register",
-        text: "Please enter a valid email",
-        icon: "error",
-      });
+      this.common.makeErrorMessage('Can not register', 'Please enter a valid email');
     } else if (!this.checkPassword()) {
-      swal({
-        title: "Can not register",
-        text: "Passwords do not match",
-        icon: "error",
-      });
+      this.common.makeErrorMessage('Can not register', 'Passwords do not match');
     } else {
       this.api.registerUser(this.user.toJSON()).subscribe (
         response => {
           if (response['status'] == 'success') {
-            swal({
-              title: "Registration successful",
-              icon: "success",
-            });
+            this.common.makeSuccessMessage('Registration successful');
           } else {
-            swal({
-              title: "Can not register",
-              text: response['error_message'],
-              icon: "error",
-            });    
+            this.common.makeErrorMessage('Can not register', response['error_message']);
           }
         },
         error => {
