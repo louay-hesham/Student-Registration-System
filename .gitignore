@@ -42,3 +42,7 @@ Frontend/e2e/*.map
 # System Files
 Frontend/.DS_Store
 Frontend/Thumbs.db
+
+Backend/StudentRegistrationSystem/__pycache__/
+Backend/backend/__pycache__/
+Backend/backend/migrations/__pycache__/
