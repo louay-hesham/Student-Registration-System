@@ -2,9 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../../services/api.service';
 import { CommonService } from '../../../services/common.service';
 import * as crypto from 'crypto-js';
-import * as _swal from 'sweetalert';
-import { SweetAlert } from 'sweetalert/typings/core';
-const swal: SweetAlert = _swal as any;
 
 @Component({
   selector: 'app-login',
@@ -24,7 +21,11 @@ export class LoginComponent implements OnInit {
     let hashedPwd = crypto.MD5(this.password);
     this.api.login(this.username, hashedPwd).subscribe(
       response => {
-        console.log(response);
+        if (response['status'] == 'success') {
+          this.common.makeSuccessMessage('Login successful')
+        } else {
+          this.common.makeErrorMessage('Could not login', response['error_message'])
+        }
       },
       error => {
         console.log(error);

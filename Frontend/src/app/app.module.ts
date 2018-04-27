@@ -7,8 +7,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './components/app.component';
   import { HomeComponent } from './components/home/home.component';
     import { RegistrationComponent } from './components/home/registration/registration.component';
+    import { LoginComponent } from './components/home/login/login.component';
 
 import { ApiService } from './services/api.service';
+import { CommonService } from './services/common.service';
+
 
 
 
@@ -16,7 +19,8 @@ import { ApiService } from './services/api.service';
   declarations: [
     AppComponent,
     RegistrationComponent,
-    HomeComponent
+    HomeComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +28,10 @@ import { ApiService } from './services/api.service';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [ApiService],
+  providers: [
+    ApiService,
+    CommonService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
