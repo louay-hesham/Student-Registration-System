@@ -28,8 +28,16 @@ export class DepartmentComponent implements OnInit {
   }
 
   private chooseDepartment(code: string) {
-    console.log(code + ' is chosen');
-    console.log(this.common.departments[code]);
+    this.api.chooseDepartment(code, this.common.user.id).subscribe(
+      response => {
+        if (response['status'] == 'success') {
+          this.common.makeSuccessMessage('Department chosen successfully');
+          this.common.parseUser(response['data']);
+        } else {
+          this.common.makeErrorMessage('Could not register in department', response['error_message'])
+        } 
+      }
+    )
   }
 
 }

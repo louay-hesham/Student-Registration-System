@@ -43,9 +43,8 @@ export class CommonService {
   public parseDepartments(departmentsData: string) {
     this.departments = {};
     departmentsData = JSON.parse(departmentsData);
-    for (var department of departmentsData) {
+    for (let department of departmentsData) {
       this.departments[department['pk']] = department['fields'];
     }
-    console.log(this.departments)
   }
 }

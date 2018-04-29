@@ -26,4 +26,12 @@ export class ApiService {
   public getDepartments(): Observable<any> {
     return this.http.post(this.baseUrl + 'getdepartments/', {});
   }
+
+  public chooseDepartment(depID: string, userID: number): Observable<any> {
+    let data = {
+      'user_id': userID,
+      'dep_id': depID
+    }
+    return this.http.post(this.baseUrl + 'choosedepartment/', data);
+  }
 }
