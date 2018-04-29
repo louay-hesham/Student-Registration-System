@@ -2,8 +2,6 @@ import json
 from backend.models import *
 import math
 
-success_response = { 'status': 'success' }
-
 def decode_password(numbers):
   hashed = bytes([])
   for b in numbers:
@@ -24,4 +22,10 @@ def make_error_response(message):
   return {
     'status': 'error',
     'error_message': message
+  }
+
+def make_success_response(data):
+  return {
+    'status': 'success',
+    'data': json.dumps(data)
   }

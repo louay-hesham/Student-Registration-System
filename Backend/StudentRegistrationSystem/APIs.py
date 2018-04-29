@@ -1,4 +1,5 @@
 from django.http import HttpResponse
+from django.core import serializers
 import json
 from backend.models import *
 import math
@@ -22,7 +23,9 @@ def register_user(request):
       user.password = hashed_password
       user.email = email
       user.save()
-      response = success_response
+      user = User.objects.get(username=username, password=hashed_password, email=email)
+      user_data = serializers.serialize('json', [user])
+      response = make_success_response(user_data)
   return HttpResponse(json.dumps(response))
 
 def login(request):
@@ -31,7 +34,9 @@ def login(request):
   hashed_password = decode_password(data['password']['words'])
   try:
     user = User.objects.get(username = username, password = hashed_password)
-    response = success_response
+    user_data = serializers.serialize('json', [user])
+    response = make_success_response(user_data)
+    response = make_success_response(user_data)
   except:
     response = make_error_response('Incorrect username or password')
   return HttpResponse(json.dumps(response))
