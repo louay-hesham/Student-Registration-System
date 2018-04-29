@@ -34,7 +34,7 @@ export class RegistrationComponent implements OnInit {
         response => {
           if (response['status'] == 'success') {
             this.common.makeSuccessMessage('Registration successful');
-            let x = this.common.parseUser(response['data']).toJSON_noEcryption()
+            this.common.user = this.common.parseUser(response['data'])
           } else {
             this.common.makeErrorMessage('Can not register', response['error_message']);
           }          

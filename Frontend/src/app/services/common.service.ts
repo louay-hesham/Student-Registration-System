@@ -7,6 +7,8 @@ const swal: SweetAlert = _swal as any;
 @Injectable()
 export class CommonService {
 
+  public user: User = undefined;
+
   constructor() { }
 
   public makeSuccessMessage(title: string, text:string = '') {
