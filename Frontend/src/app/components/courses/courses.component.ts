@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../../services/api.service';
+import { CommonService } from '../../services/common.service';
 
 @Component({
   selector: 'app-courses',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CoursesComponent implements OnInit {
 
-  constructor() { }
+  constructor(private api: ApiService, private common: CommonService) { }
 
   ngOnInit() {
+    this.api.getCourses(this.common.user.department).subscribe(
+      response => {
+        if (response['status'] == 'success') {
+          this.common.parseCourses(response['data']);
+        }
+      }
+    )
   }
 
 }

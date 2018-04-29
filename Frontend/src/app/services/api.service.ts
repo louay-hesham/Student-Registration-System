@@ -34,4 +34,11 @@ export class ApiService {
     }
     return this.http.post(this.baseUrl + 'choosedepartment/', data);
   }
+
+  public getCourses(depID: string): Observable<any> {
+    let data = {
+      'dep_id': depID 
+    }
+    return this.http.post(this.baseUrl + 'getcourses/', data);
+  }
 }

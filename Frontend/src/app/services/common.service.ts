@@ -9,6 +9,7 @@ export class CommonService {
 
   public user: User = undefined;
   public departments: any;
+  public courses: any;
 
   constructor() { }
 
@@ -46,5 +47,14 @@ export class CommonService {
     for (let department of departmentsData) {
       this.departments[department['pk']] = department['fields'];
     }
+  }
+
+  public parseCourses(coursesData: string) {
+    this.courses = {};
+    coursesData = JSON.parse(coursesData);
+    for (let course of coursesData) {
+      this.courses[course['pk']] = course['fields'];
+    }
+    console.log(this.courses); 
   }
 }
