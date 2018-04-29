@@ -4,6 +4,7 @@
       <h1>Hogwarts School for Witchcraft and Wizardry</h1>
       <app-home *ngIf="!loggedIn()"></app-home>
       <app-department *ngIf="loggedIn() && showDepartments()"></app-department>
+      <app-courses *ngIf="loggedIn() && !showDepartments()"></app-courses>
     </div>
   </div>
 </main>
