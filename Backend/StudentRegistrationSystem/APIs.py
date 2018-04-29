@@ -46,3 +46,15 @@ def get_all_departments(request):
   d = serializers.serialize('json', departments)
   response = make_success_response(d)
   return HttpResponse(json.dumps(response))
+
+def choose_department(request):
+  data = extract_data(request)
+  user_id = data['user_id']
+  department_id = data['dep_id']
+  user = User.objects.get(id=user_id)
+  department = Department.objects.get(id=department_id)
+  user.department = department
+  user.save()
+  user_data = serializers.serialize('json', [user])
+  response = make_success_response(user_data)
+  return HttpResponse(json.dumps(response))
