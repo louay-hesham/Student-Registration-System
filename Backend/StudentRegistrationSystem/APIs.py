@@ -43,8 +43,8 @@ def login(request):
 
 def get_all_departments(request):
   departments = Department.objects.all();
-  d = serializers.serialize('json', departments)
-  response = make_success_response(d)
+  ddepartments_data = serializers.serialize('json', departments)
+  response = make_success_response(ddepartments_data)
   return HttpResponse(json.dumps(response))
 
 def choose_department(request):
@@ -57,4 +57,13 @@ def choose_department(request):
   user.save()
   user_data = serializers.serialize('json', [user])
   response = make_success_response(user_data)
+  return HttpResponse(json.dumps(response))
+
+def get_courses(request):
+  data = extract_data(request)
+  department_id = data['dep_id']
+  department = Department.objects.get(id=department_id)
+  courses = Course.objects.filter(department=department)
+  courses_data = serializers.serialize('json', courses)
+  response = make_success_response(courses_data)
   return HttpResponse(json.dumps(response))
