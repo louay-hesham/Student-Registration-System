@@ -36,7 +36,13 @@ def login(request):
     user = User.objects.get(username = username, password = hashed_password)
     user_data = serializers.serialize('json', [user])
     response = make_success_response(user_data)
-    response = make_success_response(user_data)
   except:
     response = make_error_response('Incorrect username or password')
+  return HttpResponse(json.dumps(response))
+
+
+def get_all_departments(request):
+  departments = Department.objects.all();
+  d = serializers.serialize('json', departments)
+  response = make_success_response(d)
   return HttpResponse(json.dumps(response))

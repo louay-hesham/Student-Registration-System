@@ -24,4 +24,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^register/', csrf_exempt(register_user)),
     url(r'^login/', csrf_exempt(login)),
+    url(r'^getdepartments/', csrf_exempt(get_all_departments)),
 ]
