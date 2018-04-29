@@ -27,5 +27,5 @@ def make_error_response(message):
 def make_success_response(data):
   return {
     'status': 'success',
-    'data': json.dumps(data)
+    'data': data
   }
