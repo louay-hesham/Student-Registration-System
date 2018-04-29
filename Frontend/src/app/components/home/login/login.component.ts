@@ -23,6 +23,8 @@ export class LoginComponent implements OnInit {
       response => {
         if (response['status'] == 'success') {
           this.common.makeSuccessMessage('Login successful')
+          let x = this.common.parseUser(response['data']).toJSON_noEcryption()
+          console.log(x)
         } else {
           this.common.makeErrorMessage('Could not login', response['error_message'])
         }
