@@ -22,4 +22,8 @@ export class ApiService {
     }
     return this.http.post(this.baseUrl + 'login/', data)  
   }
+
+  public getDepartments(): Observable<any> {
+    return this.http.post(this.baseUrl + 'getdepartments/', {});
+  }
 }
