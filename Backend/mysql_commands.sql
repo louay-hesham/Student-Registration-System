@@ -18,3 +18,20 @@ CREATE TABLE User (
   Department varchar(10),
   FOREIGN KEY (Department) REFERENCES Department(ID)
 );
+
+CREATE TABLE Course (
+  ID varchar(10) PRIMARY KEY,
+  Name varchar(75) NOT NULL,
+  CreditHours int NOT NULL,
+  InstructorName varchar(100) NOT NULL,
+  Description MEDIUMTEXT,
+  Department varchar(10),
+  FOREIGN KEY (Department) REFERENCES Department(ID)
+);
+
+CREATE TABLE Registeration (
+  CourseID varchar(10) NOT NULL,
+  UserID int NOT NULL,
+  FOREIGN KEY (CourseID) REFERENCES Course(ID),
+  FOREIGN KEY (UserID) REFERENCES User(ID)
+);
