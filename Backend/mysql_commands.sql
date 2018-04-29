@@ -32,6 +32,7 @@ CREATE TABLE Course (
 CREATE TABLE Registeration (
   CourseID varchar(10) NOT NULL,
   UserID int NOT NULL,
+  RegistrationDate timestamp default CURRENT_TIMESTAMP NOT NULL,
   FOREIGN KEY (CourseID) REFERENCES Course(ID),
   FOREIGN KEY (UserID) REFERENCES User(ID)
 );
