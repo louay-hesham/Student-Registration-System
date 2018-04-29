@@ -2,7 +2,8 @@
   <div class="jumbotron">
     <div class="container">
       <h1>Hogwarts School for Witchcraft and Wizardry</h1>
-      <app-home *ngIf="!loggedIn"></app-home>
+      <app-home *ngIf="!loggedIn()"></app-home>
+      <app-department *ngIf="loggedIn() && showDepartments()"></app-department>
     </div>
   </div>
 </main>

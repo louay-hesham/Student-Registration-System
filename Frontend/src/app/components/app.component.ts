@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CommonService } from '../services/common.service'
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  private loggedIn: boolean = false;
+
+  constructor(private common: CommonService) { }
+
+  private loggedIn(): boolean {
+    return this.common.user != undefined;
+  }
+
+  private showDepartments(): boolean {
+    return this.common.user.department == null || this.common.user.department == undefined;
+  }
 }

@@ -11,6 +11,7 @@ import { AppComponent } from './components/app.component';
 
 import { ApiService } from './services/api.service';
 import { CommonService } from './services/common.service';
+import { DepartmentComponent } from './components/department/department.component';
 
 
 
@@ -20,7 +21,8 @@ import { CommonService } from './services/common.service';
     AppComponent,
     RegistrationComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    DepartmentComponent
   ],
   imports: [
     BrowserModule,
