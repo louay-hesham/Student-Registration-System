@@ -8,6 +8,7 @@ const swal: SweetAlert = _swal as any;
 export class CommonService {
 
   public user: User = undefined;
+  public departments: any;
 
   constructor() { }
 
@@ -27,7 +28,7 @@ export class CommonService {
     });
   }
 
-  public parseUser(userData: any): User{
+  public parseUser(userData: string){
     let user = new User();
     userData = JSON.parse(userData);
     user.id = userData[0]['pk'];
@@ -36,6 +37,15 @@ export class CommonService {
     user.registrationDate = new Date(userData[0]['fields']['registrationdate']);
     user.password = userData[0]['fields']['password'];
     user.department = userData[0]['fields']['department'];
-    return user;
+    this.user = user;
   }  
+
+  public parseDepartments(departmentsData: string) {
+    this.departments = {};
+    departmentsData = JSON.parse(departmentsData);
+    for (var department of departmentsData) {
+      this.departments[department['pk']] = department['fields'];
+    }
+    console.log(this.departments)
+  }
 }

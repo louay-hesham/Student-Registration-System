@@ -1,3 +1,18 @@
-<p>
-  department works!
-</p>
+<h4>Please choose your department</h4>
+
+<div class="table-responsive">
+  <table class="table table-striped">
+    <tr>
+      <th>Department Code</th>
+      <th>Department Name</th>
+      <th>Department Description</th>
+      <th>Select</th>
+    </tr>
+    <tr *ngFor="let d of getDepartmentCodes()">
+      <td>{{d}}</td>
+      <td>{{common.departments[d]['name']}}</td>
+      <td>{{common.departments[d]['description']}}</td>
+      <td><button class="btn btn-info" (click)="chooseDepartment(d)">Choose</button></td>
+    </tr>
+  </table>
+</div>

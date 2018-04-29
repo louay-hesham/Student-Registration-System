@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
       response => {
         if (response['status'] == 'success') {
           this.common.makeSuccessMessage('Login successful')
-          this.common.user = this.common.parseUser(response['data'])
+          this.common.parseUser(response['data'])
         } else {
           this.common.makeErrorMessage('Could not login', response['error_message'])
         }
