@@ -10,6 +10,7 @@ import { CommonService } from '../../services/common.service';
 export class CoursesComponent implements OnInit {
 
   private selectedCourses: any = { };
+  private registerationDates: any = { };
 
   constructor(private api: ApiService, private common: CommonService) { }
 
@@ -18,7 +19,7 @@ export class CoursesComponent implements OnInit {
       response => {
         if (response['status'] == 'success') {
           this.common.parseCourses(response['data']);
-          for(let code of this.getCoursesCodes()) {
+          for(let code in this.common.courses) {
             this.selectedCourses[code] = false;
           }
         }
@@ -31,9 +32,10 @@ export class CoursesComponent implements OnInit {
     this.api.getRegisteredCourses(this.common.user.id).subscribe(
       response => {
         let registeredCourses = this.common.parseRegisteredCourses(response['data']);
-        for (let code of registeredCourses){
+        for (let code in registeredCourses){
           this.selectedCourses[code] = true;
         }
+        this.registerationDates = registeredCourses;
       }
     )
   }
@@ -73,10 +75,18 @@ export class CoursesComponent implements OnInit {
   }
 
   private resetSelection() {
-    for(let code of this.getCoursesCodes()) {
+    for(let code in this.common.courses) {
       this.selectedCourses[code] = false;
     }
     this.setRegisteredCourses();
+  }
+
+  private getRegisterationDate(code: string): string {
+    try {
+      return this.registerationDates[code];
+    } catch {
+      return '';
+    }
   }
 
 }

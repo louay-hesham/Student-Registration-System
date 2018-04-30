@@ -57,11 +57,13 @@ export class CommonService {
     }
   }
 
-  public parseRegisteredCourses(registerationData: string): string[] {
-    let registeredCoursesCodes = [];
+  public parseRegisteredCourses(registerationData: string): any {
+    let registeredCoursesCodes = {};
     registerationData = JSON.parse(registerationData);
     for (let registeration of registerationData) {
-      registeredCoursesCodes.push(registeration['pk'])
+      let dateString = registeration['fields']['registerationdate'];
+      dateString = dateString.substring(0, dateString.length - 1)
+      registeredCoursesCodes[registeration['pk']] = new Date(dateString)
     }
     return registeredCoursesCodes; 
   }

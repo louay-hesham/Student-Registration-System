@@ -23,6 +23,7 @@
       <th>Instructor</th>
       <th>Course Description</th>
       <th>Select</th>
+      <th>Registeration Date</th>
     </tr>
     <tr *ngFor="let c of getCoursesCodes()">
       <td>{{c}}</td>
@@ -33,6 +34,7 @@
       <td>
         <button class="{{buttonClass(c)}}" (click)="selectCourse(c)">{{buttonText(c)}}</button>
       </td>
+      <td>{{getRegisterationDate(c)}}</td>
     </tr>
   </table>
 </div>
