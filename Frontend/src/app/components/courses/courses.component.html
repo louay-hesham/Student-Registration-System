@@ -1,3 +1,23 @@
-<p>
-  courses works!
-</p>
+<h3>Welcome {{common.user.username}}</h3>
+<h4>Please choose your courses</h4>
+
+<div class="table-responsive">
+  <table class="table table-striped">
+    <tr>
+      <th>Course Code</th>
+      <th>Course Name</th>
+      <th>Course Credit Hours</th>
+      <th>Instructor</th>
+      <th>Course Description</th>
+      <th>Select</th>
+    </tr>
+    <tr *ngFor="let c of getCoursesCodes()">
+      <td>{{c}}</td>
+      <td>{{common.courses[c]['name']}}</td>
+      <td>{{common.courses[c]['credithours']}}</td>
+      <td>{{common.courses[c]['instructorname']}}</td>
+      <td>{{common.courses[c]['description']}}</td>
+      <td>-- Checkboxes go here --</td>
+    </tr>
+  </table>
+</div>

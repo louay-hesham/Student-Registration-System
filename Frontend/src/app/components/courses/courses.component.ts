@@ -21,4 +21,8 @@ export class CoursesComponent implements OnInit {
     )
   }
 
+  private getCoursesCodes(): any {
+    return Object.keys(this.common.courses);
+  }
+
 }
