@@ -50,4 +50,12 @@ export class CoursesComponent implements OnInit {
     this.selectedCourses[code] = !this.selectedCourses[code];
   }
 
+  private saveSelection() {
+    
+  }
+
+  private resetSelection() {
+
+  }
+
 }
