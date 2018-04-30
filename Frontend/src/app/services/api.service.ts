@@ -55,4 +55,11 @@ export class ApiService {
     }
     return this.http.post(this.baseUrl + 'registercourses/', data);
   }
+
+  public getRegisteredCourses(userID: number): Observable<any> {
+    let data = {
+      'user_id': userID
+    }
+    return this.http.post(this.baseUrl + 'getregisteredcourses/', data);
+  }
 }

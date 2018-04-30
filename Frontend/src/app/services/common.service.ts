@@ -56,4 +56,13 @@ export class CommonService {
       this.courses[course['pk']] = course['fields'];
     }
   }
+
+  public parseRegisteredCourses(registerationData: string): string[] {
+    let registeredCoursesCodes = [];
+    registerationData = JSON.parse(registerationData);
+    for (let registeration of registerationData) {
+      registeredCoursesCodes.push(registeration['pk'])
+    }
+    return registeredCoursesCodes; 
+  }
 }

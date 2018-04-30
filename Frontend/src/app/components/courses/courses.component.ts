@@ -24,6 +24,14 @@ export class CoursesComponent implements OnInit {
         }
       }
     )
+    this.api.getRegisteredCourses(this.common.user.id).subscribe(
+      response => {
+        let registeredCourses = this.common.parseRegisteredCourses(response['data']);
+        for (let code of registeredCourses){
+          this.selectedCourses[code] = true;
+        }
+      }
+    )
   }
 
   private getCoursesCodes(): any {
@@ -53,7 +61,9 @@ export class CoursesComponent implements OnInit {
   private saveSelection() {
     this.api.registerCourses(this.common.user.id, this.selectedCourses).subscribe(
       response => {
-        console.log(response);
+        if (response['status'] == 'success') {
+          this.common.makeSuccessMessage('Courses saved successfully');
+        }
       }
     )
   }
