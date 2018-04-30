@@ -34,7 +34,7 @@ class Department(models.Model):
 class Registeration(models.Model):
     courseid = models.ForeignKey(Course, models.DO_NOTHING, db_column='CourseID', primary_key=True)  # Field name made lowercase.
     userid = models.ForeignKey('User', models.DO_NOTHING, db_column='UserID')  # Field name made lowercase.
-    registrationdate = models.DateTimeField(db_column='RegistrationDate')  # Field name made lowercase.
+    registerationdate = models.DateTimeField(db_column='RegistrationDate')  # Field name made lowercase.
 
     class Meta:
         managed = False
