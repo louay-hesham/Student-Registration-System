@@ -67,3 +67,18 @@ def get_courses(request):
   courses_data = serializers.serialize('json', courses)
   response = make_success_response(courses_data)
   return HttpResponse(json.dumps(response))
+
+def register_courses(request):
+  data = extract_data(request)
+  user_id = data['user_id']
+  user = User.objects.get(id=user_id)
+  # registered_courses = Registeration.objects.filter(userid=user)
+  for course_code in data['courses']:
+    registration = Registeration()
+    registration.userid = user
+    course = Course.objects.get(id=course_code)
+    registration.courseid = course
+    registration.save()
+
+  response = make_success_response('success')
+  return HttpResponse(json.dumps(response))  
