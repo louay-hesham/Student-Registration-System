@@ -41,4 +41,18 @@ export class ApiService {
     }
     return this.http.post(this.baseUrl + 'getcourses/', data);
   }
+
+  public registerCourses(userID: number, courses: any): Observable<any> {
+    let coursesCodes = [];
+    for(let code of Object.keys(courses)) {
+      if (courses[code]) {
+        coursesCodes.push(code);
+      }
+    }
+    let data = {
+      'user_id': userID,
+      'courses': coursesCodes
+    }
+    return this.http.post(this.baseUrl + 'registercourses/', data);
+  }
 }

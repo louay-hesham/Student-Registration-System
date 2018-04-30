@@ -51,7 +51,11 @@ export class CoursesComponent implements OnInit {
   }
 
   private saveSelection() {
-    
+    this.api.registerCourses(this.common.user.id, this.selectedCourses).subscribe(
+      response => {
+        console.log(response);
+      }
+    )
   }
 
   private resetSelection() {

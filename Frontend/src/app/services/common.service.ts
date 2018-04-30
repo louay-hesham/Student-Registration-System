@@ -55,6 +55,5 @@ export class CommonService {
     for (let course of coursesData) {
       this.courses[course['pk']] = course['fields'];
     }
-    console.log(this.courses); 
   }
 }
