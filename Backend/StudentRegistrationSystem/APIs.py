@@ -72,13 +72,18 @@ def register_courses(request):
   data = extract_data(request)
   user_id = data['user_id']
   user = User.objects.get(id=user_id)
-  # registered_courses = Registeration.objects.filter(userid=user)
+  registered_courses = Registeration.objects.filter(userid=user)
+  for registeration in registered_courses:
+    if registeration.courseid.id not in data['courses']:
+      registeration.delete()
   for course_code in data['courses']:
-    registration = Registeration()
-    registration.userid = user
     course = Course.objects.get(id=course_code)
-    registration.courseid = course
-    registration.save()
+    n = Registeration.objects.filter(userid=user, courseid=course).count()
+    if n == 0:
+      registeration = Registeration()
+      registeration.userid = user
+      registeration.courseid = course
+      registeration.save()
 
   response = make_success_response('success')
   return HttpResponse(json.dumps(response))  
