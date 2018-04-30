@@ -17,7 +17,9 @@
       <td>{{common.courses[c]['credithours']}}</td>
       <td>{{common.courses[c]['instructorname']}}</td>
       <td>{{common.courses[c]['description']}}</td>
-      <td>-- Checkboxes go here --</td>
+      <td>
+        <button class="{{buttonClass(c)}}" (click)="selectCourse(c)">{{buttonText(c)}}</button>
+      </td>
     </tr>
   </table>
 </div>
