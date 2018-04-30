@@ -24,6 +24,10 @@ export class CoursesComponent implements OnInit {
         }
       }
     )
+    this.setRegisteredCourses();
+  }
+
+  private setRegisteredCourses() {
     this.api.getRegisteredCourses(this.common.user.id).subscribe(
       response => {
         let registeredCourses = this.common.parseRegisteredCourses(response['data']);
@@ -69,7 +73,10 @@ export class CoursesComponent implements OnInit {
   }
 
   private resetSelection() {
-
+    for(let code of this.getCoursesCodes()) {
+      this.selectedCourses[code] = false;
+    }
+    this.setRegisteredCourses();
   }
 
 }
