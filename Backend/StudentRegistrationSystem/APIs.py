@@ -82,3 +82,12 @@ def register_courses(request):
 
   response = make_success_response('success')
   return HttpResponse(json.dumps(response))  
+
+def get_registerd_courses(request):
+  data = extract_data(request)
+  user_id = data['user_id']
+  user = User.objects.get(id=user_id)
+  registeration = Registeration.objects.filter(userid=user)
+  registeration_data = serializers.serialize('json', registeration)
+  response = make_success_response(registeration_data)
+  return HttpResponse(json.dumps(response))
