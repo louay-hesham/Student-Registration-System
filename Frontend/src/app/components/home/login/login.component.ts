@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() { }
 
   private login() {
-    let hashedPwd = crypto.MD5(this.password);
+    let hashedPwd = crypto.SHA256(this.password);
     this.api.login(this.username, hashedPwd).subscribe(
       response => {
         if (response['status'] == 'success') {

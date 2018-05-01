@@ -1,18 +1,14 @@
 import json
-from backend.models import *
-import math
 
-def decode_password(numbers):
+def decode_password(password):
+  numbers = password['words']
+  n = int(password['sigBytes'] / 8)
   hashed = bytes([])
   for b in numbers:
     if b < 0:
       b += (-2*b)
-    hashed += b.to_bytes(4, 'big')
-  text = bytes([])
-  for b in hashed:
-    i = math.floor( (b / 256) * 95 + 32)
-    text += i.to_bytes(1, 'big')
-  return text
+    hashed += b.to_bytes(n, 'big')
+  return hashed
 
 def extract_data(request):
   json_string = request.body.decode()

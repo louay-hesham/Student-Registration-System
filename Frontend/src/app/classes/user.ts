@@ -12,7 +12,7 @@ export class User {
   constructor () { }
   
   public toJSON(): any {
-    let hashedPwd = crypto.MD5(this.password)
+    let hashedPwd = crypto.SHA256(this.password)
     return {
       'id': this.id,
       'username': this.username,

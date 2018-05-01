@@ -17,7 +17,7 @@ def register_user(request):
       User.objects.get(email=email)
       response = make_error_response('Email already used')
     except:
-      hashed_password = decode_password(data['password']['words'])
+      hashed_password = decode_password(data['password'])
       user = User()
       user.username = username
       user.password = hashed_password
@@ -31,7 +31,7 @@ def register_user(request):
 def login(request):
   data = extract_data(request)
   username = data['username']
-  hashed_password = decode_password(data['password']['words'])
+  hashed_password = decode_password(data['password'])
   try:
     user = User.objects.get(username = username, password = hashed_password)
     user_data = serializers.serialize('json', [user])
