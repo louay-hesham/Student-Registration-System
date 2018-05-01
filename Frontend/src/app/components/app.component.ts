@@ -17,4 +17,8 @@ export class AppComponent {
   private showDepartments(): boolean {
     return this.common.user.department == null || this.common.user.department == undefined;
   }
+
+  private logout() {
+    
+  }
 }
