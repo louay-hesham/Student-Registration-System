@@ -69,6 +69,14 @@ export class CoursesComponent implements OnInit {
       response => {
         if (response['status'] == 'success') {
           this.common.makeSuccessMessage('Courses saved successfully');
+          for(let code in this.common.courses) {
+            this.selectedCourses[code] = false;
+          }
+          let registeredCourses = this.common.parseRegisteredCourses(response['data']);
+          for (let code in registeredCourses){
+            this.selectedCourses[code] = true;
+          }
+          this.registerationDates = registeredCourses;
         }
       }
     )
