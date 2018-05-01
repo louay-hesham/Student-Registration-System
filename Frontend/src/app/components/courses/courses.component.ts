@@ -54,7 +54,7 @@ export class CoursesComponent implements OnInit {
 
   private buttonText(code: string): string {
     if (this.selectedCourses[code]) {
-      return 'Remove Selection';
+      return 'Remove';
     } else {
       return 'Select';
     } 

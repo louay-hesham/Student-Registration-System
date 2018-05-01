@@ -17,24 +17,24 @@
 <div class="table-responsive">
   <table class="table table-striped">
     <tr>
-      <th>Course Code</th>
-      <th>Course Name</th>
-      <th>Course Credit Hours</th>
+      <th>Code</th>
+      <th>Name</th>
+      <th>Credit Hours</th>
       <th>Instructor</th>
-      <th>Course Description</th>
+      <th>Description</th>
       <th>Select</th>
       <th>Registeration Date</th>
     </tr>
     <tr *ngFor="let c of getCoursesCodes()">
-      <td>{{c}}</td>
-      <td>{{common.courses[c]['name']}}</td>
-      <td>{{common.courses[c]['credithours']}}</td>
-      <td>{{common.courses[c]['instructorname']}}</td>
-      <td>{{common.courses[c]['description']}}</td>
-      <td>
+      <td width="6.25%">{{c}}</td>
+      <td width="18.75%">{{common.courses[c]['name']}}</td>
+      <td width="6.25%">{{common.courses[c]['credithours']}}</td>
+      <td width="12.5%">{{common.courses[c]['instructorname']}}</td>
+      <td width="25%">{{common.courses[c]['description']}}</td>
+      <td width="12.5%">
         <button class="{{buttonClass(c)}}" (click)="selectCourse(c)">{{buttonText(c)}}</button>
       </td>
-      <td>{{getRegisterationDate(c)}}</td>
+      <td width="18.75%">{{getRegisterationDate(c)}}</td>
     </tr>
   </table>
 </div>
