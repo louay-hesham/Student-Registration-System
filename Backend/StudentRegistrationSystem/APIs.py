@@ -32,12 +32,14 @@ def login(request):
   data = extract_data(request)
   username = data['username']
   hashed_password = decode_password(data['password'])
-  try:
-    user = User.objects.get(username = username, password = hashed_password)
-    user_data = serializers.serialize('json', [user])
-    response = make_success_response(user_data)
-  except:
-    response = make_error_response('Incorrect username or password')
+  response = get_user_data(username, hashed_password)
+  return HttpResponse(json.dumps(response))
+
+def hashed_login(request):
+  data = extract_data(request)
+  username = data['username']
+  hashed_password = data['password']
+  response = get_user_data(username, hashed_password)
   return HttpResponse(json.dumps(response))
 
 

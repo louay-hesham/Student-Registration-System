@@ -1,4 +1,6 @@
 import json
+from backend.models import *
+from django.core import serializers
 
 def decode_password(password):
   numbers = password['words']
@@ -25,3 +27,12 @@ def make_success_response(data):
     'status': 'success',
     'data': data
   }
+
+def get_user_data(username, password):
+  try:
+    user = User.objects.get(username = username, password = password)
+    user_data = serializers.serialize('json', [user])
+    response = make_success_response(user_data)
+  except:
+    response = make_error_response('Incorrect username or password')
+  return response

@@ -28,5 +28,6 @@ urlpatterns = [
     url(r'^choosedepartment/', csrf_exempt(choose_department)),
     url(r'^getcourses/', csrf_exempt(get_courses)),
     url(r'^registercourses/', csrf_exempt(register_courses)),
-    url(r'^getregisteredcourses/', csrf_exempt(get_registerd_courses))
+    url(r'^getregisteredcourses/', csrf_exempt(get_registerd_courses)),
+    url(r'^hashedlogin/', csrf_exempt(hashed_login))
 ]

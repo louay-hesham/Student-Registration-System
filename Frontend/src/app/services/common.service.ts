@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from '../classes/user'
+import { CookieService } from 'ngx-cookie-service';
 import * as _swal from 'sweetalert';
 import { SweetAlert } from 'sweetalert/typings/core';
 const swal: SweetAlert = _swal as any;
@@ -11,7 +12,12 @@ export class CommonService {
   public departments: any;
   public courses: any;
 
-  constructor() { }
+  constructor(private cookie: CookieService) { }
+
+  private saveUserCookie() {
+    this.cookie.set('username', this.user.username);
+    this.cookie.set('password', this.user.password);
+  }
 
   public makeSuccessMessage(title: string, text:string = '') {
     swal({
@@ -39,6 +45,7 @@ export class CommonService {
     user.password = userData[0]['fields']['password'];
     user.department = userData[0]['fields']['department'];
     this.user = user;
+    this.saveUserCookie();
   }  
 
   public parseDepartments(departmentsData: string) {

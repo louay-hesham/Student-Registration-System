@@ -23,6 +23,14 @@ export class ApiService {
     return this.http.post(this.baseUrl + 'login/', data)  
   }
 
+  public hashedLogin(username: string, password: string): Observable<any> {
+    let data = {
+      'username': username,
+      'password': password
+    }
+    return this.http.post(this.baseUrl + 'hashedlogin/', data)  
+  }
+
   public getDepartments(): Observable<any> {
     return this.http.post(this.baseUrl + 'getdepartments/', {});
   }

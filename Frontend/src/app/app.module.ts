@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CookieService } from 'ngx-cookie-service';
 
 
 import { AppComponent } from './components/app.component';
@@ -34,7 +35,8 @@ import { CoursesComponent } from './components/courses/courses.component';
   ],
   providers: [
     ApiService,
-    CommonService
+    CommonService,
+    CookieService
   ],
   bootstrap: [AppComponent]
 })
