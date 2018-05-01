@@ -85,8 +85,7 @@ def register_courses(request):
       registeration.courseid = course
       registeration.save()
 
-  response = make_success_response('success')
-  return HttpResponse(json.dumps(response))  
+  return get_registerd_courses(request)
 
 def get_registerd_courses(request):
   data = extract_data(request)
